@@ -1,11 +1,11 @@
 /*
-  Trabalho de Estrutura de Dados - Fila com Prioridade
-  Tema: Sistema de triagem em ambulatório com cores de pulseira
-  Alunos:
+Trabalho de Estrutura de Dados - Fila com Prioridade
+Tema: Sistema de triagem em ambulatório com cores de pulseira
+Alunos:
     Luis Guilherme Borges - 211045178
     Vinicius Fernandes Rufino - 200062891
 
- Descrição do Sistema:
+Descrição do Sistema:
 Este trabalho implementa um sistema de triagem de pacientes em um ambulatório, utilizando uma
 estrutura de dados do tipo fila com prioridade.
 Cada paciente é classificado com uma cor de pulseira que representa o nível de urgência:
@@ -19,11 +19,6 @@ O sistema permite:
 - Atendimento conforme prioridade
 - Visualização das filas
 
-  Compilação:
-    gcc triagem_ambulatório.c -o triagem
-
-  Execução:
-    ./triagem
 */
 
 #include <stdio.h>
@@ -61,7 +56,12 @@ void adicionarPaciente(FilaDeEspera* fila, char nomePaciente[]) {
         printf("Fila cheia! Não é possível adicionar mais pacientes.\n");
         return;
     }
-    strcpy(fila->lista[fila->fim].nome, nomePaciente);
+    int i = 0;
+    while (nomePaciente[i] != '\0' && i < TAM_NOME - 1) {
+        fila->lista[fila->fim].nome[i] = nomePaciente[i];
+        i++;
+    }
+    fila->lista[fila->fim].nome[i] = '\0';
     fila->fim++;
 }
 
